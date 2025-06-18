@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #4285f4;
+        }
+        .endpoint {
+            background: #f4f4f4;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .method {
+            font-weight: bold;
+            color: #0066cc;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Service Provider API Documentation</h1>
+    
+    <h2>Authentication</h2>
+    
+    <div class="endpoint">
+        <p><span class="method">POST</span> /api/register</p>
+        <p>Register a new user</p>
+        <pre>
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "client" // or "provider"
+}
+        </pre>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">POST</span> /api/login</p>
+        <p>Login a user</p>
+        <pre>
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+        </pre>
+    </div>
+    
+    <h2>Service Requests</h2>
+    
+    <div class="endpoint">
+        <p><span class="method">GET</span> /api/requests</p>
+        <p>Get all service requests</p>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">GET</span> /api/requests/{id}</p>
+        <p>Get a specific service request</p>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">POST</span> /api/requests</p>
+        <p>Create a new service request</p>
+        <pre>
+{
+  "title": "Fix leaking faucet",
+  "description": "Kitchen faucet is leaking and needs repair",
+  "location": "123 Main St",
+  "user_id": 1
+}
+        </pre>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">PUT</span> /api/requests</p>
+        <p>Update a service request status</p>
+        <pre>
+{
+  "id": 1,
+  "status": "accepted", // or "completed", "cancelled"
+  "provider_id": 2 // optional, required for "accepted" status
+}
+        </pre>
+    </div>
+    
+    <h2>Service Providers</h2>
+    
+    <div class="endpoint">
+        <p><span class="method">GET</span> /api/providers</p>
+        <p>Get all service providers</p>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">GET</span> /api/providers/{id}</p>
+        <p>Get a specific service provider</p>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">POST</span> /api/providers</p>
+        <p>Create a new service provider</p>
+        <pre>
+{
+  "user_id": 2,
+  "name": "Jane's Repair Services",
+  "services": "Plumbing, Electrical, Carpentry",
+  "description": "Professional repair services with 10+ years of experience"
+}
+        </pre>
+    </div>
+    
+    <div class="endpoint">
+        <p><span class="method">POST</span> /api/providers/accept</p>
+        <p>Accept a service request</p>
+        <pre>
+{
+  "provider_id": 1,
+  "request_id": 2
+}
+        </pre>
+    </div>
+    
+    <h2>Users</h2>
+    
+    <div class="endpoint">
+        <p><span class="method">GET</span> /api/users/{id}</p>
+        <p>Get a user profile</p>
+    </div>
+</body>
+</html>
